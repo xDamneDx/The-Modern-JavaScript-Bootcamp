@@ -5,11 +5,11 @@
   "description": "The Modern JavaScript Bootcamp",
   "repository": {
     "type": "git",
-    "url": "git@github.com:xDamneDx/The-Modern-JavaScript-Bootcamp.git"
+    "url": "git+ssh://git@github.com/xDamneDx/The-Modern-JavaScript-Bootcamp.git"
   },
   "devDependencies": {
-    "eslint": "4.19.1",
-    "eslint-config-htmlacademy": "0.5.2"
+    "eslint": "^4.19.1",
+    "eslint-config-htmlacademy": "^0.5.2"
   },
   "license": "MIT",
   "dependencies": {},
@@ -18,5 +18,11 @@
   },
   "engines": {
     "node": "8.11"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/xDamneDx/The-Modern-JavaScript-Bootcamp/issues"
+  },
+  "homepage": "https://github.com/xDamneDx/The-Modern-JavaScript-Bootcamp#readme",
+  "main": "index.js",
+  "author": ""
 }
