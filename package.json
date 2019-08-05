@@ -1,0 +1,22 @@
+{
+  "name": "the-modern-javascript-bootcamp",
+  "version": "0.0.1",
+  "private": true,
+  "description": "The Modern JavaScript Bootcamp",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:xDamneDx/The-Modern-JavaScript-Bootcamp.git"
+  },
+  "devDependencies": {
+    "eslint": "4.19.1",
+    "eslint-config-htmlacademy": "0.5.2"
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "scripts": {
+    "test": "eslint 01.basics/"
+  },
+  "engines": {
+    "node": "8.11"
+  }
+}
