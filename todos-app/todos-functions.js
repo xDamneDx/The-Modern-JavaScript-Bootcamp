@@ -25,6 +25,11 @@ const removeTodo = function (id) {
     }
 };
 
+// Toggle todo completion
+const toggleTodo = function (todo) {
+    todo.completed = !todo.completed;
+};
+
 // Get the DOM element for individual todo
 const generateTodoDOM = function (todo) {
     const todoEl = document.createElement('div');
@@ -33,9 +38,16 @@ const generateTodoDOM = function (todo) {
     const removeButton = document.createElement('button');
 
     checkbox.setAttribute('type', 'checkbox');
-    todoTitle.textContent = ` ${todo.text} `;
-    removeButton.textContent = 'x';
+    checkbox.checked = todo.completed;
+    checkbox.addEventListener('change', function () {
+        toggleTodo(todo);
+        saveTodos(todos);
+        renderTodos(todos, filters);
+    });
 
+    todoTitle.textContent = ` ${todo.text} `;
+
+    removeButton.textContent = 'x';
     removeButton.addEventListener('click', function () {
         removeTodo(todo.id);
         saveTodos(todos);

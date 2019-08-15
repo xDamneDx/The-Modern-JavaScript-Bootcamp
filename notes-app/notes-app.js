@@ -9,13 +9,14 @@ console.log(notes);
 renderNotes(notes, filters);
 
 document.querySelector('#create-note').addEventListener('click', function () {
+    const id = uuidv4();
     notes.push({
-        id: uuidv4(),
+        id: id,
         title: '',
         body: ''
     });
     saveNotes(notes);
-    renderNotes(notes, filters);
+    location.assign(`/edit.html#${id}`);
 });
 
 document.querySelector('#search-text').addEventListener('input', function (e) {
