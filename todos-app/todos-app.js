@@ -7,13 +7,13 @@ const filters = {
 
 renderTodos(todos, filters);
 
-document.querySelector('#todo-search').addEventListener('input', function (evt) {
+document.querySelector('#todo-search').addEventListener('input', (evt) => {
     filters.searchText = evt.target.value;
 
     renderTodos(todos, filters);
 });
 
-document.querySelector('#todo-form').addEventListener('submit', function (evt) {
+document.querySelector('#todo-form').addEventListener('submit', (evt) => {
     evt.preventDefault();
 
     todos.push({
@@ -29,7 +29,7 @@ document.querySelector('#todo-form').addEventListener('submit', function (evt) {
     renderTodos(todos, filters);
 });
 
-document.querySelector('#hide-completed').addEventListener('change', function (evt) {
+document.querySelector('#hide-completed').addEventListener('change', (evt) => {
     filters.hideCompleted = evt.target.checked;
 
     renderTodos(todos, filters);
