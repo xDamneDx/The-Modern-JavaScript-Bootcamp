@@ -9,7 +9,7 @@ const saveNotes = (notes) => {
     localStorage.setItem('notes', JSON.stringify(notes));
 };
 
-// Remove note from the list
+// Remove note from the list 
 const removeNote = (id) => {
     const noteIndex = notes.findIndex((note) => note.id === id);
 
