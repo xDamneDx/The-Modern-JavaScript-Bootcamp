@@ -1,3 +1,5 @@
+'use script'
+
 const todos = getSavedTodos();
 
 const filters = {

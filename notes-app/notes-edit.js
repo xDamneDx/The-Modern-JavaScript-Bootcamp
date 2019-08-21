@@ -1,3 +1,5 @@
+'use script'
+
 const titleElement = document.querySelector('#note-title');
 const updatedElement = document.querySelector('#updated-at');
 const bodyElement = document.querySelector('#note-body');

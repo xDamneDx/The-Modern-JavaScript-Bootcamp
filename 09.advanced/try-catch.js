@@ -14,6 +14,17 @@
 // const result = getTip(true);
 // console.log(result); // error with message: 'Argument must be a number'
 
+// const getTip = (amount) => {
+//     if (typeof amount === 'number') {
+//         return amount * .25;
+//     } else {
+//         throw Error('Argument must be a number');
+//     }
+// };
+
+// const result = getTip(true);
+// console.log(result); // error with more information
+
 const getTip = (amount) => {
     if (typeof amount === 'number') {
         return amount * .25;
@@ -21,6 +32,10 @@ const getTip = (amount) => {
         throw Error('Argument must be a number');
     }
 };
-const result = getTip(true);
-console.log(result); // error with more information
 
+try {
+    const result = getTip(true);
+    console.log(result);
+} catch (e) {
+    console.log('Catch block is running');
+}

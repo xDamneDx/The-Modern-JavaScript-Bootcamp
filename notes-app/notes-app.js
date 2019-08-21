@@ -1,3 +1,5 @@
+'use script'
+
 let notes = getSavedNotes();
 
 const filters = {
