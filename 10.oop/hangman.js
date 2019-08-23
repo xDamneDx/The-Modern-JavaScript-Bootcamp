@@ -2,19 +2,20 @@ const Hangman = function (word, remainingGuesses) {
     this.word = word.toLowerCase().split('');
     this.remainingGuesses = remainingGuesses;
     this.guesses = ['c', 'b', 't', 'e'];
-    this.getPuzzle = function () {
-        let result = '';
-        
-        this.word.forEach((letter) => {
-            if (this.guesses.includes(letter) || letter === ' ') {
-                result += letter;
-            } else {
-                result += '*';
-            }
-        });
+};
 
-        return result;
-    };
+Hangman.prototype.getPuzzle = function () {
+    let result = '';
+    
+    this.word.forEach((letter) => {
+        if (this.guesses.includes(letter) || letter === ' ') {
+            result += letter;
+        } else {
+            result += '*';
+        }
+    });
+
+    return result;
 };
 
 const firstGame = new Hangman('Cat', 2);
