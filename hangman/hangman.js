@@ -2,6 +2,19 @@ const Hangman = function (word, remainingGuesses) {
     this.word = word.toLowerCase().split('');
     this.remainingGuesses = remainingGuesses;
     this.guesses = [];
+    this.status = 'playing...';
+};
+
+Hangman.prototype.getStatus = function () {
+    const finished = this.word.every((letter) => this.guesses.includes(letter));
+
+    if (this.remainingGuesses === 0) {
+        this.status = 'failed.';
+    } else if (finished) {
+        this.status = 'finished!'
+    } else {
+        this.status = 'playing...'
+    }
 };
  
 Hangman.prototype.makeGuess = function (guess) {
@@ -13,6 +26,8 @@ Hangman.prototype.makeGuess = function (guess) {
             this.remainingGuesses--;
         }
     }
+
+    this.getStatus();
 };
 
 Hangman.prototype.getPuzzle = function () {
@@ -26,16 +41,5 @@ Hangman.prototype.getPuzzle = function () {
         }
     });
 
-    return result + `. Remaining guesses: ${this.remainingGuesses}`;
+    return result;
 };
-
-const firstGame = new Hangman('Cat', 2);
-const secondGame = new Hangman('New Jersey', 6);
-
-firstGame.makeGuess('c');
-firstGame.makeGuess('t');
-firstGame.makeGuess('z');
-console.log(firstGame.getPuzzle());
-
-secondGame.makeGuess('w');
-console.log(secondGame.getPuzzle());

@@ -1,12 +1,16 @@
-// Primitive value: string, number, boolean, null, undefined
+const puzzleEl = document.querySelector('#puzzle');
+const guessesEl = document.querySelector('#guesses');
+const statusEl = document.querySelector('#status');
+const firstGame = new Hangman('Cat', 2);
 
-// Object: myObject --> Object.prototype --> null
-// Array: myArray --> Array.prototype --> Object.prototype --> null
-// Function: myFunct --> Function.prototype --> Object.prototype --> null
-// Function: myString --> String.prototype --> Object.prototype --> null
-// Function: myNumber --> Number.prototype --> Object.prototype --> null
-// Function: myBoolean --> Boolean.prototype --> Object.prototype --> null
+puzzleEl.textContent = `Word: ${firstGame.getPuzzle()}`;
+guessesEl.textContent = `Remaining guesses: ${firstGame.remainingGuesses}`;
+statusEl.textContent = `Status: ${firstGame.status}`;
 
-// const product = 'Computer';
-const product = new String('Computer');
-console.log(product);
+window.addEventListener('keypress', function (e) {
+    const guess = String.fromCharCode(e.charCode);
+    firstGame.makeGuess(guess);
+    puzzleEl.textContent = `Word: ${firstGame.getPuzzle()}`;
+    guessesEl.textContent = `Remaining guesses: ${firstGame.remainingGuesses}`;
+    statusEl.textContent = `Status: ${firstGame.status}`;
+});
