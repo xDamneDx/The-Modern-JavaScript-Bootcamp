@@ -16,11 +16,11 @@ Hangman.prototype.getStatus = function () {
         this.status = 'playing...'
     }
 };
- 
+
 Hangman.prototype.makeGuess = function (guess) {
     guess = guess.toLowerCase();
 
-    if (!this.guesses.includes(guess)) {
+    if (!this.guesses.includes(guess) && this.status === 'playing...') {
         this.guesses += guess;
         if (!this.word.includes(guess)) {
             this.remainingGuesses--;
@@ -28,6 +28,16 @@ Hangman.prototype.makeGuess = function (guess) {
     }
 
     this.getStatus();
+};
+
+Hangman.prototype.getMessage = function () {
+    if (this.status === 'failed.') {
+        return `Nice try! The word was "${this.word.join('')}"`;
+    } else if (this.status === 'finished!') {
+        return `Great work! You guessed the word.`;
+    } else {
+        return `Guesses left: ${this.remainingGuesses}`;
+    }
 };
 
 Hangman.prototype.getPuzzle = function () {
