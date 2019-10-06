@@ -1,27 +1,27 @@
-// Prototype Inheritance
+// Class
 
-const Person = function (firstName, lastName, age, likes = []) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.age = age;
-    this.likes = likes;
-};
+class Person {
+    constructor (firstName, lastName, age, likes = []) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.likes = likes;
+    }
+    getBio() {
+        let bio = `${this.firstName} is ${this.age}.`;
 
-Person.prototype.getBio = function () {
-    let bio = `${this.firstName} is ${this.age}.`;
+        this.likes.forEach((like) => {
+            bio += ` ${this.firstName} likes ${like}.`;
+        })
 
-    this.likes.forEach((like) => {
-        bio += ` ${this.firstName} likes ${like}.`;
-    })
-
-    return bio;
-};
-
-Person.prototype.setName = function (fullName) {
-    const names = fullName.split(' ');
-    this.firstName = names[0];
-    this.secondName = names[1];
-};
+        return bio;
+    }
+    setName(fullName) {
+        const names = fullName.split(' ');
+        this.firstName = names[0];
+        this.secondName = names[1];
+    }
+}
 
 const me = new Person('Vladimir', 'Livinskiy', 33, ['Biking', 'Playing Games']);
 console.log(me.getBio());
