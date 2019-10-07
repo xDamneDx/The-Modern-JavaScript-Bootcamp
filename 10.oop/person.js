@@ -23,9 +23,34 @@ class Person {
     }
 }
 
-const me = new Person('Vladimir', 'Livinskiy', 33, ['Biking', 'Playing Games']);
-console.log(me.getBio());
+class Employee extends Person {
+    constructor(firstName, lastName, age, position, likes) {
+        super(firstName, lastName, age, likes);
+        this.position = position;
+    }
+    getBio() {
+        return `${this.firstName} ${this.lastName} is a ${this.position}.`; 
+    }
+    getYearsLeft() {
+        return 65 - this.age;
+    }
+}
 
-const person2 = new Person('Alex', 'Livinskiy', 26);
-person2.setName('Alexis Turner');
-console.log(person2.getBio());
+class Student extends Person {
+    constructor(firstName, lastName, age, likes, grade) {
+        super(firstName, lastName, age, likes);
+        this.grade = grade;
+    }
+    getBio() {
+        const status = this.grade >= 70 ? 'passing' : 'failing';
+        return `${this.firstName} is ${status} the class`;
+    }
+    updateGrade(score) {
+        this.grade += score;
+    }
+}
+
+const firstStudent = new Student('Alex', 'Broskow', 34, 'Skating', 71);
+console.log(firstStudent.getBio());
+firstStudent.updateGrade(-30);
+console.log(firstStudent.getBio());
