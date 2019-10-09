@@ -28,7 +28,7 @@ class Hangman {
     
         this.getStatus();
     }
-    getMessage() {
+    get message() {
         if (this.status === 'failed.') {
             return `Nice try! The word was "${this.word.join('')}"`;
         } else if (this.status === 'finished!') {
@@ -37,7 +37,7 @@ class Hangman {
             return `Guesses left: ${this.remainingGuesses}`;
         }
     }
-    getPuzzle() {
+    get puzzle() {
         let result = '';
     
         this.word.forEach((letter) => {
