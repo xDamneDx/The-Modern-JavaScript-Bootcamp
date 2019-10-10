@@ -1,6 +1,6 @@
 const puzzleEl = document.querySelector('#puzzle');
 const statusEl = document.querySelector('#status');
-const firstGame = new Hangman('Cat', 2);
+const firstGame = new Hangman('New York', 4);
 
 puzzleEl.textContent = `Word: ${firstGame.puzzle}`;
 statusEl.textContent = firstGame.message;
