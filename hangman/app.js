@@ -16,12 +16,10 @@ window.addEventListener('keypress', function (e) {
     statusEl.textContent = firstGame.message;
 });
 
-getPuzzle((error, puzzle) => {
-    if (error) {
-        console.log(`Error: ${error}`);
-    } else {
-        console.log(puzzle);
-    }
+getPuzzle('2').then((puzzle) => {
+    console.log(puzzle);
+}, (err) => {
+    console.log(`Error: ${err}`);
 });
 
 // Making an HTTP request
@@ -32,10 +30,8 @@ getPuzzle((error, puzzle) => {
 
 const countryCode = 'UA';
 
-getCountryDetails(countryCode, (error, country) => {
-    if (error) {
-        console.log(`Error: ${error}`);
-    } else {
-        console.log(`Country name: ${country.name}`);
-    }
-})
+getCountryDetails(countryCode).then((country) => {
+    console.log(country.name);
+}, (error) => {
+    console.log(`Error: ${error}`);
+});
