@@ -3,7 +3,7 @@
 // Respomse - what was actually done
 
 const puzzleEl = document.querySelector('#puzzle');
-const statusEl = document.querySelector('#status');
+const guessesEl = document.querySelector('#guesses');
 let game; 
 
 window.addEventListener('keypress', (e) => {
@@ -13,8 +13,16 @@ window.addEventListener('keypress', (e) => {
 });
 
 const render = () => {
-    puzzleEl.textContent = `Word: ${game.puzzle}`;
-    statusEl.textContent = game.message;
+    // puzzleEl.textContent = `Word: ${game.puzzle}`;
+    puzzleEl.innerHTML = '';
+    guessesEl.textContent = game.message;
+
+    game.puzzle.split('').forEach((letter) => {
+        const letterEl = document.createElement('span');
+        letterEl.textContent = letter;
+
+        puzzleEl.appendChild(letterEl);
+    })
 }
 
 const startGame = async () => {
