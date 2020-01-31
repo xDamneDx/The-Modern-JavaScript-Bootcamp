@@ -4,17 +4,28 @@
 
 const puzzleEl = document.querySelector('#puzzle');
 const statusEl = document.querySelector('#status');
-const firstGame = new Hangman('New York', 4);
-
-puzzleEl.textContent = `Word: ${firstGame.puzzle}`;
-statusEl.textContent = firstGame.message;
+let game; 
 
 window.addEventListener('keypress', (e) => {
     const guess = String.fromCharCode(e.charCode);
-    firstGame.makeGuess(guess);
-    puzzleEl.textContent = `Word: ${firstGame.puzzle}`;
-    statusEl.textContent = firstGame.message;
+    game.makeGuess(guess);
+    render();
 });
+
+const render = () => {
+    puzzleEl.textContent = `Word: ${game.puzzle}`;
+    statusEl.textContent = game.message;
+}
+
+const startGame = async () => {
+    const puzzle = await getPuzzle('2');
+    game = new Hangman(puzzle, 5);
+    render();
+}
+
+document.querySelector('#reset').addEventListener('click', startGame);
+
+startGame();
 
 // getPuzzle('2').then((puzzle) => {
 //     console.log(puzzle);
@@ -48,32 +59,38 @@ window.addEventListener('keypress', (e) => {
 //     console.log(error);
 // });
 
-getPuzzle('2').then((puzzle) => {
-    console.log(puzzle);
-}).catch((err) => {
-    console.log(`Error: ${err}`);
-}); // Random two words puzzle
+// getPuzzle('2').then((puzzle) => {
+//     console.log(puzzle);
+// }).catch((err) => {
+//     console.log(`Error: ${err}`);
+// }); // Random two words puzzle
 
-const countryCode = 'UA';
+// const countryCode = 'UA';
 
-getCountryDetails(countryCode).then((country) => {
-    console.log(country.name);
-}, (error) => {
-    console.log(`Error: ${error}`);
-}); // Ukraine
+// getCountryDetails(countryCode).then((country) => {
+//     console.log(country.name);
+// }, (error) => {
+//     console.log(`Error: ${error}`);
+// }); // Ukraine
 
-getLocation().then((location) => {
-    console.log(`Your current location is: ${location.city}, ${location.region} (${location.country})`);
-}, (err) => {
-    console.log(`Error: ${err}`);
-}) // Your current location is: Mykolayiv, Mykolaiv (UA)
+// getLocation().then((location) => {
+//     console.log(`Your current location is: ${location.city}, ${location.region} (${location.country})`);
+// }, (err) => {
+//     console.log(`Error: ${err}`);
+// }) // Your current location is: Mykolayiv, Mykolaiv (UA)
 
-// getLocation().then((location) => getCountryDetails(location.country)).then((country) => console.log(`You are here: ${country.name}`)); // You are here: Ukraine
+// // getLocation().then((location) => getCountryDetails(location.country)).then((country) => console.log(`You are here: ${country.name}`)); // You are here: Ukraine
 
-getLocation().then((location) => {
-    return getCountryDetails(location.country)
-}).then((country) => {
-    console.log(`You are here: ${country.name}`) // You are here: Ukraine
-}).catch((err) => {
-    console.log(`Error: ${err}`);
-}); 
+// getLocation().then((location) => {
+//     return getCountryDetails(location.country)
+// }).then((country) => {
+//     console.log(`You are here: ${country.name}`) // You are here: Ukraine
+// }).catch((err) => {
+//     console.log(`Error: ${err}`);
+// }); 
+
+// getCurrentCountry().then((country) => {
+//     console.log(`Current country: ${country.name}`);
+// }).catch((error) => {
+//     console.log(`Error: ${error}`);
+// });

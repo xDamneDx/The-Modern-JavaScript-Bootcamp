@@ -14,17 +14,17 @@
 //     request.send();
 // });
 
-const getPuzzle = (wordCount) => {
-    return fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`).then((response) => {
-        if (response.status === 200) {
-            return response.json();
-        } else {
-            throw new Error('Unable to fetch puzzle');
-        }
-    }).then((data) => {
-        return data.puzzle;
-    });
-};
+// const getPuzzleOld = (wordCount) => {
+//     return fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`).then((response) => {
+//         if (response.status === 200) {
+//             return response.json();
+//         } else {
+//             throw new Error('Unable to fetch puzzle');
+//         }
+//     }).then((data) => {
+//         return data.puzzle;
+//     });
+// };
 
 // const getCountryDetails = (countryCode) => new Promise((resolve, reject) => {
 //     const request = new XMLHttpRequest();
@@ -43,22 +43,61 @@ const getPuzzle = (wordCount) => {
 //     request.send();
 // });
 
-const getCountryDetails = (countryCode) => {
-    return fetch('http://restcountries.eu/rest/v2/all').then((response) => {
-        if (response.status === 200) {
-            return response.json();
-        } else {
-            throw new Error('Unable to fetch country details!');
-        }
-    }).then((data) => data.find((country) => country.alpha2Code === countryCode));
-}
+// const getCountryDetailsOld = (countryCode) => {
+//     return fetch('http://restcountries.eu/rest/v2/all').then((response) => {
+//         if (response.status === 200) {
+//             return response.json();
+//         } else {
+//             throw new Error('Unable to fetch country details!');
+//         }
+//     }).then((data) => data.find((country) => country.alpha2Code === countryCode));
+// }
 
-const getLocation = () => {
-    return fetch('http://ipinfo.io/json?token=647d93d75251cd').then((response) => {
-        if (response.status === 200) {
-            return response.json();
-        } else {
-            throw new Error('Unable to fetch location informaion!');
-        }
-    })
-}
+// const getLocationOld = () => {
+//     return fetch('http://ipinfo.io/json?token=647d93d75251cd').then((response) => {
+//         if (response.status === 200) {
+//             return response.json();
+//         } else {
+//             throw new Error('Unable to fetch location informaion!');
+//         }
+//     })
+// }
+
+const getPuzzle = async (wordCount) => {
+    const response = await fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`);
+
+    if (response.status === 200) {
+        const data = await response.json();
+        return data.puzzle;
+    } else {
+        throw new Error('Unable to fetch puzzle');
+    }
+};
+
+// const getCountryDetails = async (countryCode) => {
+//     const response = await fetch('http://restcountries.eu/rest/v2/all');
+
+//     if (response.status === 200) {
+//         const data = await response.json();
+//         return data.find((country) => country.alpha2Code === countryCode);
+//     } else {
+//         throw new Error('Unable to fetch country details!');
+//     }
+// };
+
+// const getLocation = async () => {
+//     const response = await fetch('http://ipinfo.io/json?token=647d93d75251cd');
+
+//     if (response.status === 200) {
+//         return await response.json();
+//     } else {
+//         throw new Error('Unable to fetch location informaion!');
+//     }
+// };
+
+// const getCurrentCountry = async () => {
+//     const location = await getLocation();
+//     const currentCountry = await getCountryDetails(location.country);
+
+//     return currentCountry;
+// };
