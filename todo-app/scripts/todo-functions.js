@@ -32,10 +32,14 @@ const toggleTodo = (todo) => {
 
 // Get the DOM element for individual todo
 const generateTodoDOM = (todo) => {
-    const todoEl = document.createElement('div');
+    const todoEl = document.createElement('label');
+    const containerEl = document.createElement('div');
     const checkbox = document.createElement('input');
     const todoTitle = document.createElement('span');
     const removeButton = document.createElement('button');
+
+    todoEl.classList.add('list-item');
+    containerEl.classList.add('list-item__container');
 
     checkbox.setAttribute('type', 'checkbox');
     checkbox.checked = todo.completed;
@@ -47,15 +51,17 @@ const generateTodoDOM = (todo) => {
 
     todoTitle.textContent = ` ${todo.text} `;
 
-    removeButton.textContent = 'x';
+    removeButton.textContent = 'remove';
+    removeButton.classList.add('button', 'button--text');
     removeButton.addEventListener('click', () => {
         removeTodo(todo.id);
         saveTodos(todos);
         renderTodos(todos, filters);
     });
 
-    todoEl.appendChild(checkbox);
-    todoEl.appendChild(todoTitle);
+    containerEl.appendChild(checkbox);
+    containerEl.appendChild(todoTitle);
+    todoEl.appendChild(containerEl);
     todoEl.appendChild(removeButton);
 
     return todoEl;
@@ -63,13 +69,16 @@ const generateTodoDOM = (todo) => {
 
 // Get the DOM element for list summary
 const generateSummaryDOM = (leftTodos) => {
-    const summary = document.createElement('h3');
-    summary.textContent = `You have ${leftTodos.length} todos left:`;
+    const summary = document.createElement('h2');
+    const plural = leftTodos.length === 1 ? '' : 's';
+    summary.classList.add('list-title');
+    summary.textContent = `You have ${leftTodos.length} todo${plural} left:`;
     return summary;
 };
 
 // Render application todos based on filters
 const renderTodos = (array, filters) => {
+    const todoEl = document.querySelector('#todos');
     const filteredTodos = array.filter((todo) => {
         if (filters.hideCompleted) {
             return todo.text.toLowerCase().includes(filters.searchText.toLowerCase()) && !todo.completed;
@@ -80,10 +89,18 @@ const renderTodos = (array, filters) => {
 
     const leftTodos = filteredTodos.filter((todo) => !todo.completed);
 
-    document.querySelector('#todos').innerHTML = '';
-    document.querySelector('#todos').appendChild(generateSummaryDOM(leftTodos));
+    todoEl.innerHTML = '';
+    todoEl.appendChild(generateSummaryDOM(leftTodos));
 
-    filteredTodos.forEach((todo) => {
-        document.querySelector('#todos').appendChild(generateTodoDOM(todo));
-    });
+    console.log(filteredTodos);
+    if (filteredTodos.length > 0) {
+        filteredTodos.forEach((todo) => {
+            todoEl.appendChild(generateTodoDOM(todo));
+        });
+    } else {
+        const emptyMessageEl = document.createElement('p');
+        emptyMessageEl.classList.add('empty-message');
+        emptyMessageEl.textContent = `No to-do's to show`;
+        todoEl.appendChild(emptyMessageEl);
+    }    
 };

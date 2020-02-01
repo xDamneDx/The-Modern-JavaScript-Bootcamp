@@ -44,8 +44,8 @@ startGame();
 // // Making an HTTP request
 // // HTTP Statuses: https://httpstatuses.com/
 
-// // http://restcountries.eu/#api-endpoints-all
-// // http://restcountries.eu/rest/v2/all
+// // //restcountries.eu/#api-endpoints-all
+// // //restcountries.eu/rest/v2/all
 
 // const countryCode = 'UA';
 
@@ -55,7 +55,7 @@ startGame();
 //     console.log(`Error: ${error}`);
 // });
 
-// fetch('http://puzzle.mead.io/puzzle').then((response) => {
+// fetch('//puzzle.mead.io/puzzle').then((response) => {
 //     if (response.status === 200) {
 //         return response.json();
 //     } else {
