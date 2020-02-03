@@ -13,6 +13,7 @@
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "braces": "^3.0.2",
     "live-server": "^1.2.1",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
