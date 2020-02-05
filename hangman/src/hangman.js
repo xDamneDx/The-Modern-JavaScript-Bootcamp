@@ -20,7 +20,7 @@ class Hangman {
         guess = guess.toLowerCase();
 
         if (!this.guesses.includes(guess) && this.status === 'playing...') {
-            this.guesses += guess;
+            this.guesses = [...this.guesses, guess];
             if (!this.word.includes(guess)) {
                 this.remainingGuesses--;
             }
